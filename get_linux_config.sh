@@ -41,7 +41,12 @@ get_command(){
 get_config(){
     config_file=$1
     echo "(config)# ${config_file}"
-    eval "cat ${config_file} | grep -v -e '^[ ]*#' -e '^[ ]*$'"
+    find ${config_file} -type f -or -type l > /dev/null 2>&1 
+    if [ $? -eq 0 ]; then
+        cat ${config_file} | grep -v -e '^[ ]*#' -e '^[ ]*$'
+    else
+        echo "[ERROR] ファイルが存在しません。File name: ${config_file}"
+    fi
     echo ""
 }
 
@@ -49,12 +54,20 @@ get_config(){
 # 引数1: ディレクトリパス
 get_config_files(){
     config_dir=$1
-    # ディレクトリ内のファイル及びシンボリックリンクを表示
-    for i in $(find ${config_dir} -type f -or -type l) ; do
-        echo "(config_files)# $i"
-        cat $i | grep -v -e '^[ ]*#' -e '^[ ]*$';
+    echo "(config_files)# ${config_dir}"
+    find ${config_dir} -type d > /dev/null 2>&1 
+    if [ $? -eq 0 ]; then
+        get_command "ls -l ${config_dir}"
+        # ディレクトリ内のファイル及びシンボリックリンクを表示
+        for i in $(find ${config_dir} -type f -or -type l | sort) ; do
+            echo "(config)# $i"
+            cat $i | grep -v -e '^[ ]*#' -e '^[ ]*$'
+            echo ""
+        done
+    else
+        echo "[ERROR] ディレクトリが存在しません。Directory name: ${config_dir}"
         echo ""
-    done
+    fi
 }
 
 # 関数名: パッケージインストール状況確認
