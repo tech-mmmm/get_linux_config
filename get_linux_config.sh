@@ -193,10 +193,16 @@ if [ $? -eq 0 ]; then
     get_config "/etc/dovecot/users"
 fi
 
-show_title "Zabbix Agent設定"
-check_install_package "zabbix-agent"
+show_title "Squid設定"
+check_install_package "squid"
 if [ $? -eq 0 ]; then
-    get_config "/etc/zabbix/zabbix_agentd.conf"
+    get_config "/etc/squid/squid.conf"
+fi
+
+show_title "Unbound設定"
+check_install_package "unbound"
+if [ $? -eq 0 ]; then
+    get_config "/etc/unbound/unbound.conf"
 fi
 
 show_title "Apache (httpd) 設定"
@@ -204,6 +210,12 @@ check_install_package "httpd"
 if [ $? -eq 0 ]; then
     get_config "/etc/httpd/conf/httpd.conf"
     get_config_files "/etc/httpd/conf.d/"
+fi
+
+show_title "Zabbix Agent設定"
+check_install_package "zabbix-agent"
+if [ $? -eq 0 ]; then
+    get_config "/etc/zabbix/zabbix_agentd.conf"
 fi
 
 # メイン処理終了
