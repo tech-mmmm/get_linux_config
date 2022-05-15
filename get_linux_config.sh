@@ -8,7 +8,7 @@
 ################
 
 # 変数設定
-today=$(date "+%Y%m%d-%H%M%S")                  # ログ実行日時
+today=$(date "+%Y%m%d-%H%M%S")                  # ログ出力実行日時
 file_path="./$(uname -n)_config_${today}.log"   # ログファイル名
 
 # 標準出力先をコンソールとファイルに変更
