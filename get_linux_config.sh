@@ -89,7 +89,7 @@ check_install_package(){
 # メイン処理
 show_title "情報取得開始 $(date)"
 
-show_title "OS基本情報"
+show_title "ホスト名・OSバージョン情報"
 get_command "uname -n"
 get_command "uname -a"
 get_config "/etc/redhat-release"
@@ -163,6 +163,13 @@ get_command "localectl status"
 get_command "localectl list-locales"
 get_config "/etc/locale.conf"
 
+show_title "サービス設定"
+get_command "systemctl list-units --no-page"
+
+show_title "パッケージ設定"
+get_config_files "/etc/yum.repos.d/"
+get_command "rpm -qa"
+
 show_title "rsyslog設定"
 get_config "/etc/rsyslog.conf"
 get_config_files "/etc/rsyslog.d/"
@@ -170,13 +177,6 @@ get_config_files "/etc/rsyslog.d/"
 show_title "logrotate設定"
 get_config "/etc/logrotate.conf"
 get_config_files "/etc/logrotate.d/"
-
-show_title "サービス設定"
-get_command "systemctl list-units --no-page"
-
-show_title "パッケージ設定"
-get_config_files "/etc/yum.repos.d/"
-get_command "rpm -qa"
 
 show_title "Postfix設定"
 check_install_package "postfix"
