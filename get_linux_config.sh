@@ -93,6 +93,10 @@ show_title "OS基本情報"
 get_command "uname -n"
 get_command "uname -a"
 get_config "/etc/redhat-release"
+
+show_title "ハードウェア情報"
+get_config　"/proc/cpuinfo"
+get_config "/proc/meminfo"
 get_command "lspci"
 
 show_title "インストール設定"
