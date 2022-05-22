@@ -3,7 +3,7 @@
 # Scripts name : get_linux_config.sh
 # Usage        : ./get_linux_config.sh
 # Description  : RHEL情報取得スクリプト
-# Create       : 2022/05/14 tech-mmmm (https://tech-mmmm.blogspot.com/)
+# Create       : 2022/05/22 tech-mmmm (https://tech-mmmm.blogspot.com/)
 # Modify       :
 ################
 
