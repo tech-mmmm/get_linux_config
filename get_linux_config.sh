@@ -87,7 +87,7 @@ check_install_package(){
 }
 
 # メイン処理
-show_title "情報取得開始 $(date)"
+show_title "情報取得開始 $(date '+%Y/%m/%d %H:%M:%S')"
 
 show_title "ホスト名・OSバージョン情報"
 get_command "uname -n"
@@ -227,5 +227,5 @@ if [ $? -eq 0 ]; then
 fi
 
 # メイン処理終了
-show_title "情報取得終了 $(date)"
+show_title "情報取得終了 $(date '+%Y/%m/%d %H:%M:%S')"
 exit 0
