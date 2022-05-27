@@ -167,6 +167,7 @@ get_command "localectl list-locales"
 get_config "/etc/locale.conf"
 
 show_title "サービス設定"
+get_command "systemctl list-unit-files --no-page"
 get_command "systemctl list-units --no-page"
 
 show_title "パッケージ設定"
